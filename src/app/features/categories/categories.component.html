@@ -1,0 +1,156 @@
+<section class="categories-page">
+
+  <!-- Header -->
+  <div class="categories-header">
+
+    <div class="header-content">
+      <span class="section-badge">
+        <i class="fa-solid fa-layer-group"></i>
+        Explore Collections
+      </span>
+
+      <h1>
+        All <span>Categories</span>
+      </h1>
+
+      <p>
+        Discover our wide range of categories and find exactly what
+        you're looking for.
+      </p>
+    </div>
+
+    <div class="header-icon">
+      <i class="fa-solid fa-shapes"></i>
+    </div>
+
+  </div>
+
+  <!-- Search & Count -->
+  <div class="categories-toolbar">
+
+    <div class="search-box">
+      <i class="fa-solid fa-magnifying-glass"></i>
+
+      <input
+        type="text"
+        placeholder="Search categories..."
+        (input)="onSearch($event)"
+      />
+
+      @if (searchTerm()) {
+        <button
+          type="button"
+          class="clear-search"
+          aria-label="Clear search"
+          (click)="searchTerm.set('')"
+        >
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      }
+    </div>
+
+    <div class="categories-count">
+      <span>{{ filteredCategories().length }}</span>
+      Categories
+    </div>
+
+  </div>
+
+  <!-- Loading -->
+  @if (isLoading()) {
+    <div class="categories-grid">
+
+      @for (item of [1,2,3,4,5,6,7,8,9,10]; track item) {
+        <div class="category-skeleton">
+          <div class="skeleton-image"></div>
+          <div class="skeleton-line"></div>
+          <div class="skeleton-line short"></div>
+        </div>
+      }
+
+    </div>
+  }
+
+  <!-- Error -->
+  @else if (errorMessage()) {
+    <div class="empty-state">
+      <div class="empty-icon error-icon">
+        <i class="fa-solid fa-triangle-exclamation"></i>
+      </div>
+
+      <h3>Oops! Something went wrong</h3>
+      <p>{{ errorMessage() }}</p>
+
+      <button class="retry-btn" (click)="getCategoriesData()">
+        <i class="fa-solid fa-rotate-right"></i>
+        Try Again
+      </button>
+    </div>
+  }
+
+  <!-- Categories -->
+  @else if (filteredCategories().length > 0) {
+    <div class="categories-grid">
+
+      @for (category of filteredCategories(); track category._id) {
+        <article routerLink="/shop" class="category-card">
+
+          <div class="category-image-wrapper">
+            <img
+              [src]="category.image"
+              [alt]="category.name"
+              loading="lazy"
+            />
+
+            <div class="image-overlay"></div>
+
+            <span class="category-number">
+              {{ $index + 1 < 10 ? '0' + ($index + 1) : $index + 1 }}
+            </span>
+
+            <div class="category-arrow">
+              <i class="fa-solid fa-arrow-up-right-from-square"></i>
+            </div>
+          </div>
+
+          <div class="category-info">
+            <div>
+              <h3>{{ category.name }}</h3>
+              <span>Explore Collection</span>
+            </div>
+
+            <i class="fa-solid fa-arrow-right category-link-icon"></i>
+          </div>
+
+        </article>
+      }
+
+    </div>
+  }
+
+  <!-- Empty Search -->
+  @else {
+    <div class="empty-state">
+
+      <div class="empty-icon">
+        <i class="fa-solid fa-magnifying-glass"></i>
+      </div>
+
+      <h3>No categories found</h3>
+
+      <p>
+        We couldn't find any category matching
+        "{{ searchTerm() }}".
+      </p>
+
+      <button
+        class="retry-btn"
+        (click)="searchTerm.set('')"
+      >
+        Clear Search
+      </button>
+
+    </div>
+  }
+
+</section>

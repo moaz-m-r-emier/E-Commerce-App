@@ -1,0 +1,339 @@
+<section class="px-4 md:px-6">
+  <div class="hero-slider relative">
+
+    <swiper-container
+      #swiper
+      class="mySwiper"
+      navigation="false"
+      [pagination]="{ clickable: true }"
+      autoplay="true"
+    >
+
+      <swiper-slide>
+        <div class="item h-100 flex items-center">
+          <div class="w-full px-8 md:px-20 text-white">
+
+            <span class="hero-badge">Fresh & Healthy</span>
+
+            <h2 class="hero-title">
+              Fresh Products Delivered to Your Door
+            </h2>
+
+            <p class="hero-text">
+              Get 20% off your first order
+            </p>
+
+            <button
+            routerLink="/shop" class="hero-btn">
+              Shop Now <span>→</span>
+            </button>
+
+          </div>
+        </div>
+      </swiper-slide>
+
+      <swiper-slide>
+        <div class="item h-100 flex items-center">
+          <div class="w-full px-8 md:px-20 text-white">
+
+            <span class="hero-badge">Fresh & Healthy</span>
+
+            <h2 class="hero-title">
+              Fresh Products Delivered to Your Door
+            </h2>
+
+            <p class="hero-text">
+              Get 20% off your first order
+            </p>
+
+            <button routerLink="/shop" class="hero-btn">
+              Shop Now <span>→</span>
+            </button>
+
+          </div>
+        </div>
+      </swiper-slide>
+
+      <swiper-slide>
+        <div class="item h-100 flex items-center">
+          <div class="w-full px-8 md:px-20 text-white">
+
+            <span class="hero-badge">Fresh & Healthy</span>
+
+            <h2 class="hero-title">
+              Fresh Products Delivered to Your Door
+            </h2>
+
+            <p class="hero-text">
+              Get 20% off your first order
+            </p>
+
+            <button routerLink="/shop" class="hero-btn">
+              Shop Now <span>→</span>
+            </button>
+
+          </div>
+        </div>
+      </swiper-slide>
+
+    </swiper-container>
+
+    <!-- Custom Navigation -->
+    <button
+      class="slider-arrow slider-prev"
+      (click)="swiper.swiper.slidePrev()"
+      aria-label="Previous slide"
+    >
+      ‹
+    </button>
+
+    <button
+      class="slider-arrow slider-next"
+      (click)="swiper.swiper.slideNext()"
+      aria-label="Next slide"
+    >
+      ›
+    </button>
+
+
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 p-8 bg-gray-50">
+
+  <!-- Free Shipping -->
+  <div
+    class="group relative flex items-center gap-4 p-5
+           bg-white rounded-2xl
+           border border-gray-100
+           shadow-sm
+           overflow-hidden
+           transition-all duration-300 ease-out
+           hover:-translate-y-1
+           hover:shadow-lg
+           hover:border-blue-100"
+  >
+    <!-- subtle accent -->
+    <div
+      class="absolute left-0 top-0 bottom-0 w-1
+             bg-blue-500
+             scale-y-0 origin-bottom
+             transition-transform duration-300
+             group-hover:scale-y-100"
+    ></div>
+
+    <div
+      class="relative flex items-center justify-center
+             w-14 h-14 shrink-0
+             rounded-2xl
+             bg-blue-50 text-blue-600
+             text-lg
+             transition-all duration-300
+             group-hover:bg-blue-600
+             group-hover:text-white
+             group-hover:scale-105"
+    >
+      <i class="fa-solid fa-truck-fast"></i>
+    </div>
+
+    <div class="min-w-0">
+      <h3
+        class="font-bold text-gray-900 text-sm
+               transition-colors duration-300
+               group-hover:text-blue-600"
+      >
+        Free Shipping
+      </h3>
+
+      <p class="mt-1 text-gray-500 text-xs leading-relaxed">
+        On orders over 500 EGP
+      </p>
+    </div>
+
+    <div
+      class="absolute -right-6 -bottom-6
+             w-16 h-16 rounded-full
+             bg-blue-50/50
+             transition-transform duration-500
+             group-hover:scale-150"
+    ></div>
+  </div>
+
+
+  <!-- Secure Payment -->
+  <div
+    class="group relative flex items-center gap-4 p-5
+           bg-white rounded-2xl
+           border border-gray-100
+           shadow-sm
+           overflow-hidden
+           transition-all duration-300 ease-out
+           hover:-translate-y-1
+           hover:shadow-lg
+           hover:border-emerald-100"
+  >
+    <div
+      class="absolute left-0 top-0 bottom-0 w-1
+             bg-emerald-500
+             scale-y-0 origin-bottom
+             transition-transform duration-300
+             group-hover:scale-y-100"
+    ></div>
+
+    <div
+      class="relative flex items-center justify-center
+             w-14 h-14 shrink-0
+             rounded-2xl
+             bg-emerald-50 text-emerald-600
+             text-lg
+             transition-all duration-300
+             group-hover:bg-emerald-600
+             group-hover:text-white
+             group-hover:scale-105"
+    >
+      <i class="fa-solid fa-shield-halved"></i>
+    </div>
+
+    <div class="min-w-0">
+      <h3
+        class="font-bold text-gray-900 text-sm
+               transition-colors duration-300
+               group-hover:text-emerald-600"
+      >
+        Secure Payment
+      </h3>
+
+      <p class="mt-1 text-gray-500 text-xs leading-relaxed">
+        100% secure transactions
+      </p>
+    </div>
+
+    <div
+      class="absolute -right-6 -bottom-6
+             w-16 h-16 rounded-full
+             bg-emerald-50/50
+             transition-transform duration-500
+             group-hover:scale-150"
+    ></div>
+  </div>
+
+
+  <!-- Easy Returns -->
+  <div
+    class="group relative flex items-center gap-4 p-5
+           bg-white rounded-2xl
+           border border-gray-100
+           shadow-sm
+           overflow-hidden
+           transition-all duration-300 ease-out
+           hover:-translate-y-1
+           hover:shadow-lg
+           hover:border-orange-100"
+  >
+    <div
+      class="absolute left-0 top-0 bottom-0 w-1
+             bg-orange-500
+             scale-y-0 origin-bottom
+             transition-transform duration-300
+             group-hover:scale-y-100"
+    ></div>
+
+    <div
+      class="relative flex items-center justify-center
+             w-14 h-14 shrink-0
+             rounded-2xl
+             bg-orange-50 text-orange-600
+             text-lg
+             transition-all duration-300
+             group-hover:bg-orange-600
+             group-hover:text-white
+             group-hover:scale-105"
+    >
+      <i class="fa-solid fa-rotate-left"></i>
+    </div>
+
+    <div class="min-w-0">
+      <h3
+        class="font-bold text-gray-900 text-sm
+               transition-colors duration-300
+               group-hover:text-orange-600"
+      >
+        Easy Returns
+      </h3>
+
+      <p class="mt-1 text-gray-500 text-xs leading-relaxed">
+        14-day return policy
+      </p>
+    </div>
+
+    <div
+      class="absolute -right-6 -bottom-6
+             w-16 h-16 rounded-full
+             bg-orange-50/50
+             transition-transform duration-500
+             group-hover:scale-150"
+    ></div>
+  </div>
+
+
+  <!-- 24/7 Support -->
+  <div
+    class="group relative flex items-center gap-4 p-5
+           bg-white rounded-2xl
+           border border-gray-100
+           shadow-sm
+           overflow-hidden
+           transition-all duration-300 ease-out
+           hover:-translate-y-1
+           hover:shadow-lg
+           hover:border-purple-100"
+  >
+    <div
+      class="absolute left-0 top-0 bottom-0 w-1
+             bg-purple-500
+             scale-y-0 origin-bottom
+             transition-transform duration-300
+             group-hover:scale-y-100"
+    ></div>
+
+    <div
+      class="relative flex items-center justify-center
+             w-14 h-14 shrink-0
+             rounded-2xl
+             bg-purple-50 text-purple-600
+             text-lg
+             transition-all duration-300
+             group-hover:bg-purple-600
+             group-hover:text-white
+             group-hover:scale-105"
+    >
+      <i class="fa-solid fa-headset"></i>
+    </div>
+
+    <div class="min-w-0">
+      <h3
+        class="font-bold text-gray-900 text-sm
+               transition-colors duration-300
+               group-hover:text-purple-600"
+      >
+        24/7 Support
+      </h3>
+
+      <p class="mt-1 text-gray-500 text-xs leading-relaxed">
+        Dedicated support team
+      </p>
+    </div>
+
+    <div
+      class="absolute -right-6 -bottom-6
+             w-16 h-16 rounded-full
+             bg-purple-50/50
+             transition-transform duration-500
+             group-hover:scale-150"
+    ></div>
+  </div>
+
+</div>
+
+
+
+  </div>
+
+</section>

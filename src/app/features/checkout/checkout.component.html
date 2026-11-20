@@ -1,0 +1,520 @@
+<section class="min-h-screen bg-gray-50 py-10 px-4 sm:px-6 lg:px-8">
+  <div class="max-w-6xl mx-auto">
+    <!-- ================= HEADER ================= -->
+    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-5 mb-8">
+      <div>
+        <h1 class="text-2xl sm:text-3xl font-bold text-gray-900 flex items-center gap-3">
+          <span
+            class="bg-brand-700 text-green-500 w-11 h-11 flex items-center justify-center rounded-xl text-lg shadow-sm"
+          >
+            <i class="fa-solid fa-receipt"></i>
+          </span>
+          Complete Your Order
+        </h1>
+
+        <p class="text-gray-500 text-sm mt-2 ml-1">
+          Review your information and complete your purchase.
+        </p>
+      </div>
+
+      <a
+        href="#"
+        routerLink="/cart"
+        class="inline-flex items-center gap-2 text-brand-600 hover:text-brand-800 font-semibold text-sm transition-colors"
+      >
+        <i class="fa-solid fa-arrow-left-long"></i>
+        Back to Cart
+      </a>
+    </div>
+
+    <!-- ================= CHECKOUT LAYOUT ================= -->
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-8 items-start">
+      <!-- ================= LEFT: CHECKOUT FORM ================= -->
+      <div class="lg:col-span-2 space-y-6">
+        <form
+          id="checkout-form"
+          [formGroup]="checkOut"
+          (ngSubmit)="validateCheckout()"
+          class="space-y-6"
+          novalidate
+        >
+          <!-- ================= SHIPPING INFORMATION ================= -->
+          <div class="bg-white rounded-2xl border border-gray-200 shadow-sm overflow-hidden">
+            <div class="px-6 py-5 border-b border-gray-100 flex items-center gap-3">
+              <div
+                class="w-10 h-10 rounded-xl bg-green-50 text-[#1a8a44] flex items-center justify-center"
+              >
+                <i class="fa-solid fa-location-dot text-lg"></i>
+              </div>
+
+              <div>
+                <h2 class="text-lg font-bold text-gray-900">Shipping Information</h2>
+
+                <p class="text-sm text-gray-500 mt-0.5">Where should we deliver your order?</p>
+              </div>
+            </div>
+
+            <div class="p-6 space-y-5" formGroupName="shippingAddress">
+              <!-- CITY -->
+              <div>
+                <label for="city" class="block mb-2 text-sm font-semibold text-gray-800">
+                  City <span class="text-red-500">*</span>
+                </label>
+
+                <div class="relative">
+                  <div
+                    class="absolute inset-y-0 left-0 flex items-center pl-4 pointer-events-none text-gray-400"
+                  >
+                    <i class="fa-solid fa-city"></i>
+                  </div>
+
+                  <input
+                    type="text"
+                    id="city"
+                    formControlName="city"
+                    placeholder="e.g. Cairo, Alexandria, Giza"
+                    autocomplete="address-level2"
+                    [class.border-red-500]="
+                      checkOut.get('shippingAddress.city')?.invalid &&
+                      checkOut.get('shippingAddress.city')?.touched
+                    "
+                    class="w-full rounded-xl border border-gray-300 bg-white py-3.5 pl-11 pr-4 text-sm text-gray-900 placeholder:text-gray-400 outline-none transition-all focus:border-[#1a8a44] focus:ring-4 focus:ring-green-50"
+                  />
+
+                  @if (
+                    checkOut.get('shippingAddress.city')?.hasError('required') &&
+                    checkOut.get('shippingAddress.city')?.touched
+                  ) {
+                    <p class="mt-2 text-sm text-red-600">
+                      <i class="fa-solid fa-circle-exclamation mr-1"></i>
+                      City is required.
+                    </p>
+                  }
+                </div>
+              </div>
+
+              <!-- STREET ADDRESS -->
+              <div>
+                <label for="address" class="block mb-2 text-sm font-semibold text-gray-800">
+                  Street Address <span class="text-red-500">*</span>
+                </label>
+
+                <div class="relative">
+                  <div class="absolute top-4 left-0 pl-4 pointer-events-none text-gray-400">
+                    <i class="fa-solid fa-map-location-dot"></i>
+                  </div>
+
+                  <textarea
+                    id="address"
+                    formControlName="details"
+                    rows="3"
+                    placeholder="Street name, building number, floor, apartment..."
+                    autocomplete="street-address"
+                    [class.border-red-500]="
+                      checkOut.get('shippingAddress.details')?.invalid &&
+                      checkOut.get('shippingAddress.details')?.touched
+                    "
+                    class="w-full resize-y rounded-xl border border-gray-300 bg-white py-3.5 pl-11 pr-4 text-sm text-gray-900 placeholder:text-gray-400 outline-none transition-all focus:border-[#1a8a44] focus:ring-4 focus:ring-green-50"
+                  ></textarea>
+
+                  @if (
+                    checkOut.get('shippingAddress.details')?.hasError('required') &&
+                    checkOut.get('shippingAddress.details')?.touched
+                  ) {
+                    <p class="mt-2 text-sm text-red-600">
+                      <i class="fa-solid fa-circle-exclamation mr-1"></i>
+                      Street address is required.
+                    </p>
+                  }
+                </div>
+
+                <p class="text-xs text-gray-400 mt-2">
+                  <i class="fa-solid fa-circle-info mr-1"></i>
+                  Please provide enough details to locate your address.
+                </p>
+              </div>
+
+              <!-- PHONE NUMBER -->
+              <div>
+                <label for="phone" class="block mb-2 text-sm font-semibold text-gray-800">
+                  Phone Number <span class="text-red-500">*</span>
+                </label>
+
+                <div class="relative">
+                  <div
+                    class="absolute inset-y-0 left-0 flex items-center pl-4 pointer-events-none text-gray-400"
+                  >
+                    <i class="fa-solid fa-phone"></i>
+                  </div>
+
+                  <input
+                    type="tel"
+                    id="phone"
+                    formControlName="phone"
+                    placeholder="01xxxxxxxxx"
+                    autocomplete="tel"
+                    inputmode="tel"
+                    [class.border-red-500]="
+                      checkOut.get('shippingAddress.phone')?.invalid &&
+                      checkOut.get('shippingAddress.phone')?.touched
+                    "
+                    class="w-full rounded-xl border border-gray-300 bg-white py-3.5 pl-11 pr-4 text-sm text-gray-900 placeholder:text-gray-400 outline-none transition-all focus:border-[#1a8a44] focus:ring-4 focus:ring-green-50"
+                  />
+
+                  @if (
+                    checkOut.get('shippingAddress.phone')?.hasError('required') &&
+                    checkOut.get('shippingAddress.phone')?.touched
+                  ) {
+                    <p class="mt-2 text-sm text-red-600">
+                      <i class="fa-solid fa-circle-exclamation mr-1"></i>
+                      Phone number is required.
+                    </p>
+                  }
+
+                  @if (
+                    checkOut.get('shippingAddress.phone')?.hasError('pattern') &&
+                    checkOut.get('shippingAddress.phone')?.touched
+                  ) {
+                    <p class="mt-2 text-sm text-red-600">
+                      <i class="fa-solid fa-circle-exclamation mr-1"></i>
+                      Please enter a valid Egyptian phone number.
+                    </p>
+                  }
+                </div>
+
+                <p class="text-xs text-gray-400 mt-2">Egyptian phone numbers only.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- ================= PAYMENT METHOD ================= -->
+          <!-- ================= PAYMENT METHOD ================= -->
+          <div class="bg-white rounded-2xl border border-gray-200 shadow-sm overflow-hidden">
+            <!-- Header -->
+            <div class="px-6 py-5 border-b border-gray-100 flex items-center gap-3">
+              <div
+                class="w-10 h-10 rounded-xl bg-green-50 text-[#1a8a44] flex items-center justify-center"
+              >
+                <i class="fa-solid fa-credit-card text-lg"></i>
+              </div>
+
+              <div>
+                <h2 class="text-lg font-bold text-gray-900">Payment Method</h2>
+
+                <p class="text-sm text-gray-500 mt-0.5">Choose your preferred payment method.</p>
+              </div>
+            </div>
+
+            <div class="p-6 space-y-4">
+              <!-- ================= CASH ON DELIVERY ================= -->
+              <div class="payment-option">
+                <input
+                  #cashInput
+                  (change)="changePaymentMethod(cashInput)"
+                  type="radio"
+                  id="payment-cash"
+                  name="payment"
+                  value="cash"
+                  class="payment-radio"
+                  checked
+                />
+
+                <label for="payment-cash" class="payment-label">
+                  <!-- Radio Circle -->
+                  <span class="payment-radio-circle">
+                    <span class="payment-radio-dot"></span>
+                  </span>
+
+                  <!-- Payment Information -->
+                  <span class="flex-1 min-w-0">
+                    <span class="block text-sm font-bold text-gray-900"> Cash on Delivery </span>
+
+                    <span class="block text-xs text-gray-500 mt-1">
+                      Pay when your order arrives.
+                    </span>
+                  </span>
+
+                  <!-- Icon -->
+                  <span
+                    class="w-11 h-11 rounded-xl bg-gray-100 text-gray-600 flex items-center justify-center shrink-0"
+                  >
+                    <i class="fa-solid fa-money-bill-wave text-xl"></i>
+                  </span>
+                </label>
+              </div>
+              <!-- ================= VISA ================= -->
+              <div class="payment-option">
+                <input
+                  #visaInput
+                  (change)="changePaymentMethod(visaInput)"
+                  type="radio"
+                  id="payment-visa"
+                  name="payment"
+                  value="visa"
+                  class="payment-radio"
+                />
+
+                <label for="payment-visa" class="payment-label">
+                  <!-- Radio Circle -->
+                  <span class="payment-radio-circle">
+                    <span class="payment-radio-dot"></span>
+                  </span>
+
+                  <!-- Payment Information -->
+                  <span class="flex-1 min-w-0">
+                    <span class="block text-sm font-bold text-gray-900"> Credit / Debit Card </span>
+
+                    <span class="block text-xs text-gray-500 mt-1">
+                      Pay securely using your bank card.
+                    </span>
+                  </span>
+
+                  <!-- Card Icons -->
+                  <span class="flex items-center gap-2 text-2xl shrink-0">
+                    <i class="fa-brands fa-cc-visa text-blue-800"></i>
+                    <i class="fa-brands fa-cc-mastercard text-red-600"></i>
+                  </span>
+                </label>
+
+                <!-- Visa Content -->
+                <div class="payment-content">
+                  <div class="p-5 rounded-xl border border-gray-200 bg-gray-50/70">
+                    <!-- Card Header -->
+                    <div class="flex items-center justify-between gap-3 mb-5">
+                      <div>
+                        <h3 class="text-sm font-bold text-gray-900">Card Details</h3>
+
+                        <p class="text-xs text-gray-500 mt-1">Enter your card information.</p>
+                      </div>
+
+                      <i class="fa-solid fa-lock text-[#1a8a44] text-lg"></i>
+                    </div>
+
+                    <div class="space-y-4">
+                      <!-- Card Number -->
+                      <div>
+                        <label
+                          for="card-number"
+                          class="block mb-2 text-sm font-medium text-gray-700"
+                        >
+                          Card Number
+                        </label>
+
+                        <input
+                          type="text"
+                          id="card-number"
+                          name="card_number"
+                          placeholder="1234 5678 9012 3456"
+                          autocomplete="cc-number"
+                          inputmode="numeric"
+                          class="payment-input"
+                        />
+                      </div>
+
+                      <!-- Cardholder Name -->
+                      <div>
+                        <label
+                          for="cardholder"
+                          class="block mb-2 text-sm font-medium text-gray-700"
+                        >
+                          Cardholder Name
+                        </label>
+
+                        <input
+                          type="text"
+                          id="cardholder"
+                          name="cardholder"
+                          placeholder="Name on card"
+                          autocomplete="cc-name"
+                          class="payment-input"
+                        />
+                      </div>
+
+                      <!-- Expiry & CVV -->
+                      <div class="grid grid-cols-2 gap-4">
+                        <div>
+                          <label for="expiry" class="block mb-2 text-sm font-medium text-gray-700">
+                            Expiry Date
+                          </label>
+
+                          <input
+                            type="text"
+                            id="expiry"
+                            name="expiry"
+                            placeholder="MM / YY"
+                            autocomplete="cc-exp"
+                            class="payment-input"
+                          />
+                        </div>
+
+                        <div>
+                          <label for="cvv" class="block mb-2 text-sm font-medium text-gray-700">
+                            CVV
+                          </label>
+
+                          <input
+                            type="password"
+                            id="cvv"
+                            name="cvv"
+                            placeholder="•••"
+                            autocomplete="cc-csc"
+                            inputmode="numeric"
+                            class="payment-input"
+                          />
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- Security Note -->
+                    <div class="flex items-start gap-2 mt-5 pt-4 border-t border-gray-200">
+                      <i class="fa-solid fa-shield-halved text-[#1a8a44] mt-0.5"></i>
+
+                      <p class="text-xs text-gray-500 leading-5">
+                        Your payment should be processed through a secure payment provider.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <p class="text-xs text-center text-gray-400">
+            <i class="fa-solid fa-lock mr-1"></i>
+            Secure checkout · Your information stays protected
+          </p>
+        </form>
+      </div>
+
+      <!-- ================= RIGHT: ORDER SUMMARY ================= -->
+      <aside class="lg:col-span-1">
+        <div
+          class="bg-white rounded-2xl border border-gray-200 shadow-sm overflow-hidden lg:sticky lg:top-6"
+        >
+          <!-- SUMMARY HEADER -->
+          <div class="px-6 py-5 border-b border-gray-100">
+            <h2 class="text-lg font-bold text-gray-900 flex items-center gap-2">
+              <i class="fa-solid fa-bag-shopping text-[#1a8a44]"></i>
+              Order Summary
+            </h2>
+
+            <p class="text-sm text-gray-500 mt-1">Review your purchase.</p>
+          </div>
+
+          <div class="p-6">
+            <!-- PRODUCT PLACEHOLDER -->
+            <div class="flex items-center gap-4">
+              <div
+                class="w-16 h-16 rounded-xl bg-gray-100 flex items-center justify-center shrink-0"
+              >
+                <i class="fa-solid fa-box-open text-2xl text-gray-400"></i>
+              </div>
+
+              <div class="flex-1 min-w-0">
+                <h3 class="text-sm font-semibold text-gray-900">Your Order</h3>
+
+                <p class="text-xs text-gray-500 mt-1">Product details</p>
+
+                <p class="text-xs text-gray-400 mt-1">Quantity: —</p>
+              </div>
+
+              <span class="text-sm font-bold text-gray-900"> — </span>
+            </div>
+
+            <!-- DIVIDER -->
+            <div class="border-t border-dashed border-gray-200 my-6"></div>
+
+            <!-- PRICE DETAILS -->
+            <div class="space-y-4">
+              <div class="flex items-center justify-between gap-3 text-sm">
+                <span class="text-gray-500"> Subtotal </span>
+
+                <span class="font-semibold text-gray-900"> — </span>
+              </div>
+
+              <div class="flex items-center justify-between gap-3 text-sm">
+                <span class="text-gray-500"> Shipping </span>
+
+                <span class="text-sm font-medium text-gray-500"> Calculated later </span>
+              </div>
+            </div>
+
+            <!-- TOTAL -->
+            <div class="border-t border-gray-200 mt-6 pt-5">
+              <div class="flex items-center justify-between gap-3">
+                <span class="text-base font-bold text-gray-900"> Total </span>
+
+                <span class="text-xl font-extrabold text-[#1a8a44]"> — </span>
+              </div>
+
+              <p class="text-xs text-gray-400 mt-2">
+                Final amount will depend on your order details.
+              </p>
+            </div>
+
+            <!-- PAYMENT BUTTONS -->
+            <div class="mt-6 pt-5 border-t border-gray-100 space-y-3">
+              @if (flag() === 'cash') {
+                <button
+                  type="submit"
+                  id="cash-order-btn"
+                  form="checkout-form"
+                  class="payment-action-btn w-full"
+                >
+                  <i class="fa-solid fa-check-circle"></i>
+                  <span>Confirm Cash Order</span>
+                  <i class="fa-solid fa-arrow-right text-sm"></i>
+                </button>
+                <p class="text-xs text-center text-gray-400 mt-3">
+                  Pay when your order is delivered.
+                </p>
+              }
+
+              @if (flag() === 'visa') {
+                <button
+                  type="submit"
+                  id="visa-payment-btn"
+                  form="checkout-form"
+                  class="payment-action-btn w-full"
+                >
+                  <i class="fa-solid fa-lock"></i>
+                  <span>Continue to Secure Payment</span>
+                  <i class="fa-solid fa-arrow-right text-sm"></i>
+                </button>
+
+                <p class="text-xs text-center text-gray-400 mt-3">Secure card payment.</p>
+              }
+            </div>
+
+            <!-- TRUST INFORMATION -->
+            <div class="mt-6 rounded-xl bg-green-50 border border-green-100 p-4">
+              <div class="flex items-start gap-3">
+                <i class="fa-solid fa-truck-fast text-[#1a8a44] text-lg mt-0.5"></i>
+
+                <div>
+                  <h3 class="text-sm font-bold text-gray-900">Delivery to your door</h3>
+
+                  <p class="text-xs text-gray-600 leading-5 mt-1">
+                    Make sure your shipping information is correct before placing your order.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <!-- PAYMENT ICONS -->
+            <div class="mt-6 pt-5 border-t border-gray-100">
+              <p class="text-xs text-center text-gray-400 mb-3">Accepted payment methods</p>
+
+              <div class="flex items-center justify-center gap-4 text-3xl">
+                <i class="fa-brands fa-cc-visa text-blue-800"></i>
+
+                <i class="fa-brands fa-cc-mastercard text-red-600"></i>
+
+                <i class="fa-solid fa-money-bill-wave text-[#1a8a44]"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </div>
+</section>

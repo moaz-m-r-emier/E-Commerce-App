@@ -1,0 +1,129 @@
+/* ================= Shop Pagination ================= */
+
+.pagination-wrapper {
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.pagination-wrapper::-webkit-scrollbar {
+  display: none;
+}
+
+/* Reset ngx-pagination default spacing */
+:host ::ng-deep .shop-pagination .ngx-pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 0;
+  padding: 0;
+  font-size: 14px;
+}
+
+/* All pagination items */
+:host ::ng-deep .shop-pagination .ngx-pagination li {
+  margin: 0;
+}
+
+/* Page numbers and navigation buttons */
+:host ::ng-deep .shop-pagination .ngx-pagination a,
+:host ::ng-deep .shop-pagination .ngx-pagination button,
+:host ::ng-deep .shop-pagination .ngx-pagination .current,
+:host ::ng-deep .shop-pagination .ngx-pagination .pagination-previous,
+:host ::ng-deep .shop-pagination .ngx-pagination .pagination-next {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 38px;
+  height: 38px;
+  padding: 0 12px;
+  border-radius: 11px;
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1;
+  text-decoration: none;
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease,
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+/* Inactive page numbers */
+:host ::ng-deep .shop-pagination .ngx-pagination a {
+  background: transparent;
+  color: #64748b;
+}
+
+/* Hover effect */
+:host ::ng-deep .shop-pagination .ngx-pagination a:hover {
+  background: #ecfdf5;
+  color: #059669;
+}
+
+/* Active page */
+:host ::ng-deep .shop-pagination .ngx-pagination .current {
+  background: #059669;
+  color: #ffffff;
+  font-weight: 700;
+  box-shadow: 0 4px 10px rgb(5 150 105 / 20%);
+}
+
+/* Previous and Next */
+:host ::ng-deep .shop-pagination .ngx-pagination .pagination-previous a,
+:host ::ng-deep .shop-pagination .ngx-pagination .pagination-next a {
+  min-width: auto;
+  padding: 0 13px;
+  background: #f8fafc;
+  color: #475569;
+  border: 1px solid #e2e8f0;
+}
+
+/* Previous and Next hover */
+:host ::ng-deep .shop-pagination .ngx-pagination .pagination-previous a:hover,
+:host ::ng-deep .shop-pagination .ngx-pagination .pagination-next a:hover {
+  background: #ecfdf5;
+  color: #047857;
+  border-color: #a7f3d0;
+}
+
+/* Disabled navigation */
+:host ::ng-deep .shop-pagination .ngx-pagination .disabled {
+  color: #cbd5e1;
+  background: #f8fafc;
+  cursor: not-allowed;
+}
+
+/* Remove hover from disabled items */
+:host ::ng-deep .shop-pagination .ngx-pagination .disabled:hover {
+  background: #f8fafc;
+  color: #cbd5e1;
+}
+
+/* Focus accessibility */
+:host ::ng-deep .shop-pagination .ngx-pagination a:focus-visible,
+:host ::ng-deep .shop-pagination .ngx-pagination button:focus-visible {
+  outline: 2px solid #10b981;
+  outline-offset: 3px;
+}
+
+/* Mobile adjustments */
+@media (max-width: 480px) {
+  :host ::ng-deep .shop-pagination .ngx-pagination {
+    gap: 4px;
+    font-size: 12px;
+  }
+
+  :host ::ng-deep .shop-pagination .ngx-pagination a,
+  :host ::ng-deep .shop-pagination .ngx-pagination button,
+  :host ::ng-deep .shop-pagination .ngx-pagination .current,
+  :host ::ng-deep .shop-pagination .ngx-pagination .pagination-previous,
+  :host ::ng-deep .shop-pagination .ngx-pagination .pagination-next {
+    min-width: 33px;
+    height: 34px;
+    padding: 0 9px;
+    border-radius: 9px;
+    font-size: 12px;
+  }
+}
