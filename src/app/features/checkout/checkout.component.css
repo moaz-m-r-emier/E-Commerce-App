@@ -1,0 +1,175 @@
+/* ================= PAYMENT OPTIONS ================= */
+
+.payment-option {
+  position: relative;
+}
+
+/* Hide native radio but keep it accessible */
+.payment-radio {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Payment label */
+.payment-label {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+  border: 2px solid #e5e7eb;
+  border-radius: 0.75rem;
+  background-color: #fff;
+  cursor: pointer;
+  transition:
+    border-color 0.2s ease,
+    background-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+/* Hover */
+.payment-label:hover {
+  border-color: #86c99e;
+}
+
+/* Selected payment */
+.payment-radio:checked + .payment-label {
+  border-color: #1a8a44;
+  background-color: rgb(26 138 68 / 5%);
+}
+
+/* Keyboard focus */
+.payment-radio:focus-visible + .payment-label {
+  outline: 3px solid rgb(26 138 68 / 25%);
+  outline-offset: 3px;
+}
+
+/* Outer radio circle */
+.payment-radio-circle {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid #d1d5db;
+  border-radius: 50%;
+  transition: border-color 0.2s ease;
+}
+
+/* Selected outer circle */
+.payment-radio:checked + .payment-label .payment-radio-circle {
+  border-color: #1a8a44;
+}
+
+/* Inner radio dot */
+.payment-radio-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: #1a8a44;
+  transform: scale(0);
+  transition: transform 0.2s ease;
+}
+
+/* Show inner dot */
+.payment-radio:checked + .payment-label .payment-radio-dot {
+  transform: scale(1);
+}
+
+
+/* ================= PAYMENT CONTENT ================= */
+
+/* Hidden by default */
+.payment-content {
+  display: none;
+  margin-top: 1rem;
+}
+
+/* Show only the selected payment's content */
+.payment-radio:checked ~ .payment-content {
+  display: block;
+}
+
+
+/* ================= INPUTS ================= */
+
+.payment-input {
+  display: block;
+  width: 100%;
+  min-width: 0;
+  padding: 0.875rem 1rem;
+  border: 1px solid #d1d5db;
+  border-radius: 0.75rem;
+  background-color: #fff;
+  color: #111827;
+  font-size: 0.875rem;
+  outline: none;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.payment-input::placeholder {
+  color: #9ca3af;
+}
+
+.payment-input:focus {
+  border-color: #1a8a44;
+  box-shadow: 0 0 0 4px rgb(26 138 68 / 8%);
+}
+
+
+/* ================= ACTION BUTTONS ================= */
+
+.payment-action-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.625rem;
+  width: 100%;
+  padding: 1rem 1.25rem;
+  border: none;
+  border-radius: 0.75rem;
+  background-color: #1a8a44;
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 700;
+  box-shadow: 0 4px 10px rgb(26 138 68 / 12%);
+  cursor: pointer;
+  transition:
+    background-color 0.2s ease,
+    box-shadow 0.2s ease,
+    transform 0.2s ease;
+}
+
+.payment-action-btn:hover {
+  background-color: #157339;
+  box-shadow: 0 6px 16px rgb(26 138 68 / 18%);
+}
+
+.payment-action-btn:focus-visible {
+  outline: 3px solid rgb(26 138 68 / 30%);
+  outline-offset: 3px;
+}
+
+.payment-action-btn:active {
+  transform: scale(0.99);
+}
+
+
+/* ================= MOBILE ================= */
+
+@media (max-width: 480px) {
+  .payment-label {
+    gap: 0.75rem;
+    padding: 0.875rem;
+  }
+
+  .payment-action-btn {
+    padding: 0.875rem 1rem;
+    font-size: 0.9rem;
+  }
+}

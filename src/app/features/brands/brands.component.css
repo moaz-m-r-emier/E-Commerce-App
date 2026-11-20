@@ -1,0 +1,28 @@
+:host {
+  display: block;
+}
+
+/* Smooth image loading */
+img {
+  display: block;
+}
+
+/* Brand cards */
+article {
+  cursor: default;
+}
+
+/* Better selection */
+::selection {
+  background: #d1fae5;
+  color: #065f46;
+}
+
+/* Mobile optimization */
+@media (max-width: 480px) {
+
+  article {
+    border-radius: 14px;
+  }
+
+}

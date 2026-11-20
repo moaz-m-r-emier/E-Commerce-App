@@ -2,13 +2,27 @@
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "version": 1,
   "cli": {
-    "packageManager": "npm"
+    "packageManager": "npm",
+    "analytics": "1e1b4740-d73a-46a2-8a78-5c8fa9aebf8d"
   },
   "newProjectRoot": "projects",
   "projects": {
     "Fresh-Cart": {
       "projectType": "application",
-      "schematics": {},
+      "schematics": {
+        "@schematics/angular:component": {
+          "type": "component"
+        },
+        "@schematics/angular:service": {
+          "type": "service"
+        },
+        "@schematics/angular:interface": {
+          "type": "interface"
+        },
+        "@schematics/angular:directive": {
+          "type": "directive"
+        }
+      },
       "root": "",
       "sourceRoot": "src",
       "prefix": "app",
@@ -25,7 +39,10 @@
               }
             ],
             "styles": [
-              "src/styles.css"
+              "src/styles.css",
+              "./node_modules/@fortawesome/fontawesome-free/css/all.min.css",
+                "node_modules/ngx-toastr/toastr.css" ,
+                "node_modules/ngx-spinner/animations/square-jelly-box.css"
             ],
             "server": "src/main.server.ts",
             "outputMode": "server",
@@ -55,7 +72,13 @@
             "development": {
               "optimization": false,
               "extractLicenses": false,
-              "sourceMap": true
+              "sourceMap": true,
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.development.ts"
+                }
+              ]
             }
           },
           "defaultConfiguration": "production"
